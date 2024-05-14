@@ -54,8 +54,8 @@ Before running the project, please follow the instructions to install [astro cli
 
 2. Verify that all 4 Docker containers were created by running 'docker ps'.
 
-3. Access the Airflow UI for your local Airflow project. To do so, please go to http://localhost:8080/ and log in with 'admin' for both your Username and Password.
+3. Access the Airflow UI for your local Airflow project. To do so, please go to http://localhost:8080/ and log in with 'admin' for both your Username and Password. In the UI DAGs panel, run the **caspar_elt_pipeline** to initiate the pipeline.
 
 4. You should also be able to access your Postgres Database at http://localhost:5432/postgres.
 
-5. To access the Streamlit App go to http://localhost:8501/
+5. To access the Streamlit App for displaying of reporting table go to http://localhost:8501/
