@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: caspar
+    database: caspar_datawarehouse  
+    schema: caspar_landing  
+    tables:
+      - name: exercise
+      - name: patient
+      - name: step

@@ -1,0 +1,22 @@
+version: '3.1'
+services:
+  streamlit:
+    image: python:3.11
+    command: bash -c "pip install -r /airflow_dag/include/streamlit_container_requirements.txt && streamlit run --server.enableWebsocketCompression=false --server.enableCORS=false --server.enableXsrfProtection=false /airflow_dag/include/streamlit_app.py"
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./include:/airflow_dag/include
+      - ./dags:/airflow_dag/dags
+  scheduler:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  webserver:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  triggerer:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  postgres:
+    extra_hosts:
+      - "host.docker.internal:host-gateway" 

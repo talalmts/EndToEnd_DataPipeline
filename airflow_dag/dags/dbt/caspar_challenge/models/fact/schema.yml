@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: patient_with_most_generated_minutes
+    description: "Patient with most generated minutes"
+    columns:
+      - name: patient_id
+        description: "patient_id to reference to patient table and also the primary key"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_patient')
+              field: patient_id
+      - name: total_minutes
+        description: total generated minutes of the patient
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false
+              severity: warn
+          - not_null
+
+  - name: total_generated_minutes_per_patient
+    description: "Total generated minutes for each patient"
+    columns:
+      - name: patient_id
+        description: "patient_id to reference to patient table and also the primary key"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_patient')
+              field: patient_id
+      - name: total_minutes
+        description: total generated minutes of the patient
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false
+              severity: warn
+          - not_null
