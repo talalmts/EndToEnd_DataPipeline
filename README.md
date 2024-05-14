@@ -42,6 +42,7 @@ After completing all tasks the Streamlit app will look similar to the following 
 ![Caspar Insight](include/resource/caspar_reporting_table.png)
 
 ## Deploy Your Project Locally
+Before running the project, please follow the instruction to install [astro cli](https://docs.astronomer.io/astro/cli/install-cli)
 
 1. Start Airflow on your local machine by running 'astro dev start'.
 
