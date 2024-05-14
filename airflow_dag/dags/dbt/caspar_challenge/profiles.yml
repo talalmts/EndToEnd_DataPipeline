@@ -1,0 +1,7 @@
+caspar_challenge:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: caspar_datawarehouse.duckdb
+      schema: caspar

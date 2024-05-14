@@ -1,0 +1,74 @@
+
+version: 2
+
+models:
+  - name: stg_patient
+    description: "Contain information of a patient"
+    columns:
+      - name: patient_id
+        description: "patient_id to reference to patient table"
+        tests:
+          - not_null
+          - unique
+
+
+  - name: stg_exercise
+    description: "Contain information of patient exercise session"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: "patient_id to reference to patient table"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_patient')
+              field: patient_id
+      - name: generated_minutes
+        description: generated minutes in a given exercise session
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false
+              severity: warn
+          - not_null
+      - name: completed_at_utc
+        tests: 
+          - not_null:
+              config:
+                severity: warn
+      - name: updated_at_utc
+        tests: 
+          - not_null
+
+  - name: stg_step
+    description: "Contain information of patient walking session"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+      - name: patient_id
+        description: "patient_id to reference to patient table"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_patient')
+              field: patient_id
+      - name: generated_minutes
+        description: generated minutes in a given exercise session
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 0
+              inclusive: false
+          - not_null
+      - name: submission_time_utc
+        tests: 
+          - not_null
+      - name: updated_at_utc
+        tests: 
+          - not_null
