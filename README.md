@@ -42,11 +42,9 @@ After completing all tasks the Streamlit app will look similar to the following 
 ![Caspar Insight](include/resource/caspar_reporting_table.png)
 
 ## Deploy Your Project Locally
-Before running the project, please follow the instruction to install [astro cli](https://docs.astronomer.io/astro/cli/install-cli)
+Before running the project, please follow the instructions to install [astro cli](https://docs.astronomer.io/astro/cli/install-cli)
 
-1. Start Airflow on your local machine by running 'astro dev start'.
-
-This command will spin up 4 Docker containers on your machine, each for a different Airflow component:
+1. Start Airflow on your local machine by running 'astro dev start'. This command will spin up 5 Docker containers on your machine, each for a different Airflow component and one Streamlit component:
 
 - Postgres: Airflow's Metadata Database
 - Webserver: The Airflow component responsible for rendering the Airflow UI
