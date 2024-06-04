@@ -1,4 +1,4 @@
-name: Test Project
+name: Deployment
 
 on: workflow_dispatch
 
@@ -19,6 +19,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
   
   deploy:
+    needs: [test]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
