@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 .DS_Store
 dags/dbt/caspar_challenge/caspar_datawarehouse.duckdb
+.DS_Store

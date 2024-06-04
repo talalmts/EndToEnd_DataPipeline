@@ -1,0 +1,17 @@
+name: Test Project
+
+on: push
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Start Testing the Project
+              run: echo "Testing the Project"
+            - name: Checkout Repo
+              uses: actions/checkout@v4
+            - name: Setup Python
+              uses: actions/setup-python@v5
+              with:
+                python-version: '3.10' 
+            - run: python my_script.py
