@@ -37,6 +37,6 @@ jobs:
           curl -sSL install.astronomer.io | sudo bash -s -- v1.27.1
           astro dev start
       - name: Ping localhost
-        run: ping http://localhost:8080
+        run: curl -I http://localhost:8501
       - name: list docker image
         run: docker ps
