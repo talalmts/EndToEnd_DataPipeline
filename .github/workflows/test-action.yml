@@ -10,6 +10,8 @@ jobs:
               run: echo "Testing the Project"
             - name: Checkout Repo
               uses: actions/checkout@v4
+            - name: show dir
+              run: ls
             - name: Setup Python
               uses: actions/setup-python@v5
               with:
