@@ -1,6 +1,6 @@
 name: Test Project
 
-on: push
+on: workflow_dispatch
 
 jobs:
     test:
@@ -10,8 +10,10 @@ jobs:
               run: echo "Testing the Project"
             - name: Checkout Repo
               uses: actions/checkout@v4
+            - name: show dir
+              run: ls
             - name: Setup Python
               uses: actions/setup-python@v5
               with:
                 python-version: '3.10' 
-            - run: python tests/test_script.py
+            - run: python test_script.py
