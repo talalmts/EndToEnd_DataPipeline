@@ -24,3 +24,10 @@ jobs:
             echo "Hello World 2nd time"
       - name: Print Goodbye
         run: echo "Goodbye!"
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: artifacts-e2e
+          path: |
+            requirements.txt
+            data/steps.csv
