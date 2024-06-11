@@ -27,9 +27,26 @@ jobs:
         run: echo "Goodbye!"
       - name: Checkout Repo
         uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
+      - name: Cache pip dir
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+              ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: | 
+          python -m pip install --upgrade pip
+          python -m pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
       - name: Publish csv filename
         id: publish
-        run: find data/steps.csv -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT' ';'
+        run: find data/steps.csv -type f -execdir echo 'script-file={}' >> hello.text '$GITHUB_OUTPUT' ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -45,7 +62,19 @@ jobs:
         uses: actions/download-artifact@v4
         with: 
           name: artifacts-e2e
-      - name: Lisy the content
+      - name: Cache pip dir
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      - name: Install dependencies
+        run: | 
+          python -m pip install --upgrade pip
+          python -m pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: List the content
         run: ls 
       - name: Output filename
         run: echo "${{ needs.first-job.outputs.script-file }}"
