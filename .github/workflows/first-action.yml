@@ -34,7 +34,7 @@ jobs:
             requirements.txt
             data/steps.csv
   deploy:
-    runs-on: ubunti-latest
+    runs-on: ubuntu-latest
     needs: first-job
     steps:
       - name: Download artifacts
