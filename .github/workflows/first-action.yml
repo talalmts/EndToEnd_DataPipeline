@@ -12,11 +12,12 @@ on:
     types:
       - opened
       - closed
-  
 
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }}
     steps:
       - name: Print Greeting
         run: |
@@ -26,6 +27,9 @@ jobs:
         run: echo "Goodbye!"
       - name: Checkout Repo
         uses: actions/checkout@v4
+      - name: Publish csv filename
+        id: publish
+        run: find data/steps.csv -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT' ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -41,7 +45,9 @@ jobs:
         uses: actions/download-artifact@v4
         with: 
           name: artifacts-e2e
-      - name: Name the content
-        run: ls | cat data/steps.csv
+      - name: Lisy the content
+        run: ls 
+      - name: Output filename
+        run: echo "${{ needs.first-job.outputs.script-file }}"
       - name: Running deploy job
         run: echo "Deploying"
