@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Publish csv filename
         id: publish
-        run: find data/steps.csv -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT ';'
+        run: find data/steps.csv -type f -execdir echo 'script-file={} >> $GITHUB_OUTPUT' ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
