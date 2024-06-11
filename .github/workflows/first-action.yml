@@ -1,13 +1,19 @@
 name: First Workflow
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+  push:
+  pull_request:
+    types:
+      - opened
+      - closed
 
 jobs:
-    first-job:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Print Greeting
-              run: |
-                  echo "Hello World"
-                  echo "Hello World 2nd time"
-            - name: Print Goodbye
-              run: echo "Goodbye!"
+  first-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Greeting
+        run: |
+            echo "Hello World"
+            echo "Hello World 2nd time"
+      - name: Print Goodbye
+        run: echo "Goodbye!"
