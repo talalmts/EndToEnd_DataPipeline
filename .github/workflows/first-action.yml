@@ -44,7 +44,7 @@ jobs:
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
       - name: Publish csv filename
         id: publish
-        run: find data/steps.csv -type f -execdir echo 'script-file={}' >> hello.text '$GITHUB_OUTPUT' ';'
+        run: find data/steps.csv -type f -execdir echo 'script-file={}' >> '$GITHUB_OUTPUT' ';'
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
