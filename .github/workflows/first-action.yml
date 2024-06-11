@@ -33,3 +33,15 @@ jobs:
           path: |
             requirements.txt
             data/steps.csv
+  deploy:
+    runs-on: ubunti-latest
+    needs: first-job
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with: 
+          name: artifacts-e2e
+      - name: Name the content
+        run: ls | cat data/steps.csv
+      - name: Running deploy job
+        run: echo "Deploying"
