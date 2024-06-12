@@ -18,6 +18,7 @@ env:
 jobs:
   first-job:
     runs-on: ubuntu-latest
+    environment: testing
     outputs:
       script-file: ${{ steps.publish.outputs.script-file }}
     env:
