@@ -22,8 +22,8 @@ jobs:
       script-file: ${{ steps.publish.outputs.script-file }}
     env:
       DUCKDB_CLUSTER_ADDR: cluster0.123231.mongodb.net
-      DUCKDB_USERNAME: tmp_user_talalmts
-      DUCKDB_PASSWD: tmp_passwd
+      DUCKDB_USERNAME: ${{ secrets.DUCKDB_USERNAME }}
+      DUCKDB_PASSWD: ${{ secrets.DUCKDB_PASSWD}}
     steps:
       - name: Print Greeting
         run: |
