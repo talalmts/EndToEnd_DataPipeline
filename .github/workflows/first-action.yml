@@ -22,7 +22,7 @@ jobs:
       script-file: ${{ steps.publish.outputs.script-file }}
     env:
       DUCKDB_CLUSTER_ADDR: cluster0.123231.mongodb.net
-      DUCKDB_USERNAME: tmp_user
+      DUCKDB_USERNAME: tmp_user_talalmts
       DUCKDB_PASSWD: tmp_passwd
     steps:
       - name: Print Greeting
@@ -59,9 +59,12 @@ jobs:
             requirements.txt
             data/steps.csv
       - name: see environment vars
-        run: python env_tmp.py
+        run: |
+          python env_tmp.py
+          echo "DUCKDB_USERNAME: $DUCKDB_USERNAME"
+          echo "DUCKDB_DB_NAME: ${{ env.DUCKDB_DB_NAME}}"
 
-
+ 
   deploy:
     runs-on: ubuntu-latest
     needs: first-job
